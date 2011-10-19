@@ -1,5 +1,5 @@
 SocializeN
-----------
+==========
 
 This library provides cross-platform bindings to popular social networking APIs
 for use by [PlayN] games. Much like PlayN, a game is written against a generic
