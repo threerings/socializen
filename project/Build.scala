@@ -37,6 +37,19 @@ object SocializeNBuild extends Build {
     )
   ))
 
+  val androidLocals = com.samskivert.condep.Depends(
+    ("playn", "android", "com.googlecode.playn" % "playn-android" % playnVer)
+  )
+  lazy val facebookAndroid = androidLocals.addDeps(Project(
+    "facebook-android", file("facebook-android"), settings = commonSettings ++ Seq(
+      name := "socializen-facebook-android",
+      resolvers += "egoclean" at "http://mvn.egoclean.com",
+      libraryDependencies ++= androidLocals.libDeps ++ testDeps ++ Seq(
+        "com.egoclean" % "android-facebook" % "1.4"
+      )
+    )
+  )) dependsOn(core)
+
   lazy val socializen = Project("socializen", file(".")) aggregate(
-    core)
+    core, facebookAndroid)
 }

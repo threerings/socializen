@@ -46,12 +46,13 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <playn.version>1.0-SNAPSHOT</playn.version>
+    <android.version>2.3.3</android.version>
     <gwt.version>2.4.0</gwt.version>
-    <guava.version>10.0.1</guava.version>
   </properties>
 
   <modules>
     <module>core</module>
+    <module>facebook-android</module>
   </modules>
 
   <build>

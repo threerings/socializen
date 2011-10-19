@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.threerings.socializen</groupId>
+    <artifactId>socializen-project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>socializen-facebook-android</artifactId>
+  <packaging>jar</packaging>
+  <name>SocializeN Facebook Android</name>
+
+  <repositories>
+    <repository>
+      <id>egoclean</id>
+      <url>http://mvn.egoclean.com/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <!-- exported (transitive) dependencies -->
+    <dependency>
+      <groupId>com.googlecode.playn</groupId>
+      <artifactId>playn-android</artifactId>
+      <version>${playn.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>socializen-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.egoclean</groupId>
+      <artifactId>android-facebook</artifactId>
+      <version>1.4</version>
+    </dependency>
+
+    <!-- build and test dependencies -->
+    <dependency>
+      <groupId>com.google.android</groupId>
+      <artifactId>android</artifactId>
+      <version>${android.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <!-- include the source files in our main jar for use by GWT -->
+    <resources>
+      <resource>
+        <directory>${project.build.sourceDirectory}</directory>
+      </resource>
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+      </resource>
+    </resources>
+  </build>
+</project>

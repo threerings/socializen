@@ -5,6 +5,11 @@
 
 package socializen.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import playn.core.PlayN;
+
 /**
  * Provides access to the various social services.
  */
@@ -61,7 +66,37 @@ public class SocializeN
         _gameCenter = gameCenter;
     }
 
+    /**
+     * This method must be called in your {@link Game#update} method to process any pending
+     * deferred events enqueued by the social network backends.
+     */
+    public static void processActions () {
+        List<Runnable> actions;
+        synchronized (_actions) {
+            if (_actions.isEmpty()) return;
+            actions = new ArrayList<Runnable>(_actions);
+            _actions.clear();
+        }
+        for (Runnable action : actions) {
+            try {
+                action.run();
+            } catch (Throwable t) {
+                PlayN.log().warn("SocializeN action failure", t);
+            }
+        }
+    }
+
+    /**
+     * Enqueues an action for processing on the next call to {@link #processActions}.
+     */
+    public static void queueAction (Runnable action) {
+        synchronized (_actions) {
+            _actions.add(action);
+        }
+    }
+
     protected static Facebook _facebook;
     protected static Google _google;
     protected static GameCenter _gameCenter;
+    protected static List<Runnable> _actions = new ArrayList<Runnable>();
 }

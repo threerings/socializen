@@ -42,7 +42,7 @@ public interface Facebook
      * will require them to logon to Facebook (but not to reauthorize this app for access, unless
      * they have also explicitly removed the app in Facebook).
      */
-    void logout ();
+    void logout (Callback<Void> callback);
 
     /**
      * Fetches the {@link Card} for the authenticated user. If a valid Facebook session does not
